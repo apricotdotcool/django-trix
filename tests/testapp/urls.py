@@ -1,5 +1,5 @@
 from django import forms
-from django.conf.urls import include, url
+from django.urls import include, path
 from django.contrib import admin
 from django.views.generic import FormView
 
@@ -12,11 +12,11 @@ class EditorForm(forms.Form):
 
 class EditorView(FormView):
     form_class = EditorForm
-    template_name = 'index.html'
+    template_name = "index.html"
 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^trix/', include('trix.urls')),
-    url(r'^$', EditorView.as_view()),
+    path("admin/", admin.site.urls),
+    path("trix/", include("trix.urls")),
+    path("", EditorView.as_view()),
 ]
